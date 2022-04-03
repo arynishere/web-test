@@ -21,7 +21,7 @@ pipeline {
                 script {
                     builderImage = docker.build("webtest/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
                     builderImage.push()
-                    builderImage.push("${env.GIT_BRANCH}")
+                    builderImage.push("localhost:5000")
                     builderImage.inside('-v $WORKSPACE:/output -u root') {
                         sh """
                            cd /output
