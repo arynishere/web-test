@@ -20,14 +20,14 @@ pipeline {
                 echo 'Starting to build the project builder docker image'
                 script {
                     builderImage = docker.build("webtest/example-webapp-builder:${GIT_COMMIT_HASH}", "-f ./Dockerfile.builder .")
-                  /* builderImage.push()
-                    builderImage.push("${env.GIT_BRANCH}")
+                    builderImage.push()
+                    builderImage.push("https://github.com/arynishere/web-test.git")
                     builderImage.inside('-v $WORKSPACE:/output -u root') {
                         sh """
                            cd /output
                            lein uberjar
                         """ 
-                    }*/
+                    }
                 }
             }
         }
